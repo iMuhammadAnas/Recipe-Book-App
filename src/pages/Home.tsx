@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const [search, setSearch] = useState("");
   const [showFavorites, setShowFavorites] = useState(false);
 
-  // API data fetch and store load
+  // API data fetch
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -40,16 +40,15 @@ const Home: React.FC = () => {
       }
     };
 
-    //  only load if store is empty
     if (recipes.length === 0) {
       fetchRecipes();
     }
   }, [dispatch, recipes.length]);
 
-  //  categories extract
-  const categories = Array.from(new Set(recipes.map((r) => r.category).filter(Boolean))) as string[];
+  const categories = Array.from(
+    new Set(recipes.map((r) => r.category).filter(Boolean))
+  ) as string[];
 
-  // filtering
   let filteredRecipes = recipes;
 
   if (category) {
