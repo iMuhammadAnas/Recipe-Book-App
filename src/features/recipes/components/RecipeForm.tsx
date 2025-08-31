@@ -29,9 +29,9 @@ const RecipeForm: React.FC<Props> = ({ existingRecipe, onSubmit, onClose }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     const recipe: Recipe = {
-      id: existingRecipe?.id || Date.now().toString(),
+      id: existingRecipe?.id || `local-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       name,
       ingredients: ingredients
         .split(",")
@@ -42,18 +42,17 @@ const RecipeForm: React.FC<Props> = ({ existingRecipe, onSubmit, onClose }) => {
       category,
       favorite: existingRecipe?.favorite || false,
     };
-
+  
     onSubmit(recipe);
-
+  
     if (!existingRecipe) {
-      // Reset form
       setName("");
       setIngredients("");
       setInstructions("");
       setImage("");
       setCategory("");
     }
-
+  
     if (onClose) onClose();
   };
 

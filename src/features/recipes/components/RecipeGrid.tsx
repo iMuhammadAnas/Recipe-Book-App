@@ -2,7 +2,6 @@
 import React from "react";
 import RecipeCard from "./RecipeCard";
 
-
 interface Recipe {
   id: string;
   name: string;
@@ -24,8 +23,8 @@ const RecipeGrid: React.FC<Props> = ({ recipes }) => {
 
   return (
     <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
+      {recipes.map((recipe, index) => (
+        <RecipeCard key={`${recipe.id}-${index}`} recipe={recipe} />
       ))}
     </div>
   );
